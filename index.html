@@ -1,59 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSSフィードリーダー</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>📰 RSSフィードリーダー</h1>
-            <p class="subtitle">お気に入りのサイトの最新情報をチェック</p>
-        </header>
-
-        <div class="feed-manager">
-            <h2>RSSフィード管理</h2>
-            <div class="add-feed-form">
-                <input type="text" id="feedUrl" placeholder="RSSフィードのURLを入力" />
-                <button id="addFeedBtn">フィード追加</button>
-            </div>
-            <div class="preset-feeds">
-                <h3>プリセットフィード</h3>
-                <div class="preset-buttons">
-                    <button class="preset-btn" data-url="https://news.yahoo.co.jp/rss/topics/top-picks.xml">Yahoo!ニュース</button>
-                    <button class="preset-btn" data-url="https://www3.nhk.or.jp/rss/news/cat0.xml">NHKニュース</button>
-                    <button class="preset-btn" data-url="https://gigazine.net/news/rss_2.0/">GIGAZINE</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="feed-list">
-            <h2>登録フィード一覧</h2>
-            <div id="registeredFeeds" class="registered-feeds"></div>
-        </div>
-
-        <div class="content">
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">すべて</button>
-                <button class="filter-btn" data-filter="today">今日</button>
-                <button class="filter-btn" data-filter="week">今週</button>
-            </div>
-
-            <div id="loadingIndicator" class="loading-indicator" style="display: none;">
-                <div class="spinner"></div>
-                <p>読み込み中...</p>
-            </div>
-
-            <div id="feedContainer" class="feed-container"></div>
-        </div>
-
-        <footer>
-            <p>© 2026 RSS Feed Reader</p>
-        </footer>
-    </div>
-
-    <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RSS Feed Reader</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
