@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { Article } from '@domain/entities/Article';
 
 interface ArticleCardProps {
   article: Article;
 }
 
-export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
-  const formatDate = (date: Date): string => {
+/**
+ * ArticleCard Component
+ * 記事カードコンポーネント
+ * React.memoとuseMemoでパフォーマンス最適化
+ */
+export const ArticleCard = React.memo<ArticleCardProps>(({ article }) => {
+  // 日付フォーマット処理をメモ化
+  const formattedDate = useMemo(() => {
     const now = new Date();
+    const date = article.publishedAt;
     const diff = now.getTime() - date.getTime();
     const minutes = Math.floor(diff / 60000);
     const hours = Math.floor(diff / 3600000);
@@ -26,11 +33,16 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
         day: 'numeric',
       });
     }
-  };
+  }, [article.publishedAt]);
 
-  const handleClick = () => {
+  // ハンドラーをメモ化
+  const handleClick = useCallback(() => {
     window.open(article.url.value, '_blank', 'noopener,noreferrer');
-  };
+  }, [article.url.value]);
+
+  const handleLinkClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+  }, []);
 
   return (
     <div className="article-card" onClick={handleClick}>
@@ -38,11 +50,11 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
       <h3 className="article-title">{article.title.value}</h3>
       <p className="article-description">{article.description}</p>
       <div className="article-meta">
-        <span className="article-date">{formatDate(article.publishedAt)}</span>
+        <span className="article-date">{formattedDate}</span>
         <a
           href={article.url.value}
           className="article-link"
-          onClick={(e) => e.stopPropagation()}
+          onClick={handleLinkClick}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -51,4 +63,6 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
       </div>
     </div>
   );
-};
+});
+
+ArticleCard.displayName = 'ArticleCard';

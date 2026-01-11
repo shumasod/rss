@@ -1,5 +1,7 @@
 import React from 'react';
 import { useFeedManager } from './hooks/useFeedManager';
+import { UseCasesProvider } from './contexts/UseCasesContext';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { Header } from './components/Header';
 import { FeedManager } from './components/FeedManager';
 import { FeedList } from './components/FeedList';
@@ -9,11 +11,10 @@ import { ErrorMessage } from './components/ErrorMessage';
 import './App.css';
 
 /**
- * App Component
- * メインアプリケーションコンポーネント
- * プレゼンテーション層の最上位
+ * AppContent Component
+ * メインアプリケーションのコンテンツ
  */
-export const App: React.FC = () => {
+const AppContent: React.FC = () => {
   const {
     feeds,
     articles,
@@ -24,13 +25,14 @@ export const App: React.FC = () => {
     addFeed,
     removeFeed,
     refreshAllFeeds,
+    clearError,
   } = useFeedManager();
 
   return (
     <div className="container">
       <Header onRefresh={refreshAllFeeds} loading={loading} />
 
-      <ErrorMessage message={error} onDismiss={() => {}} />
+      <ErrorMessage message={error} onDismiss={clearError} />
 
       <FeedManager onAddFeed={addFeed} loading={loading} />
 
@@ -45,5 +47,20 @@ export const App: React.FC = () => {
         <p>© 2026 RSS Feed Reader - Built with DDD & Microservices Architecture</p>
       </footer>
     </div>
+  );
+};
+
+/**
+ * App Component
+ * UseCasesProviderとErrorBoundaryでラップしたメインアプリケーション
+ * 依存性注入と予期しないエラーのハンドリングを提供
+ */
+export const App: React.FC = () => {
+  return (
+    <ErrorBoundary>
+      <UseCasesProvider>
+        <AppContent />
+      </UseCasesProvider>
+    </ErrorBoundary>
   );
 };

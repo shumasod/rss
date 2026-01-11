@@ -4,8 +4,35 @@ import { Article } from '@domain/entities/Article';
 import { IFeedFetchService, FeedFetchResult } from '@domain/services/IFeedFetchService';
 
 /**
+ * RSS2JSON API Response Types
+ * 外部APIのレスポンス型を明示的に定義
+ */
+interface Rss2JsonResponse {
+  status: string;
+  feed?: {
+    title?: string;
+    url?: string;
+    description?: string;
+  };
+  items?: Array<{
+    title?: string;
+    pubDate?: string;
+    link?: string;
+    guid?: string;
+    author?: string;
+    thumbnail?: string;
+    description?: string;
+    content?: string;
+    enclosure?: Record<string, unknown>;
+    categories?: string[];
+  }>;
+  message?: string;
+}
+
+/**
  * Rss2JsonFeedFetchService
  * RSS2JSON APIを使用したフィード取得サービス
+ * 型安全性を重視した実装
  */
 @injectable()
 export class Rss2JsonFeedFetchService implements IFeedFetchService {
@@ -24,7 +51,7 @@ export class Rss2JsonFeedFetchService implements IFeedFetchService {
         };
       }
 
-      const data = await response.json();
+      const data: Rss2JsonResponse = await response.json();
 
       if (data.status !== 'ok') {
         return {
@@ -50,15 +77,20 @@ export class Rss2JsonFeedFetchService implements IFeedFetchService {
     }
   }
 
-  private parseArticles(data: any, feed: Feed): Article[] {
+  private parseArticles(data: Rss2JsonResponse, feed: Feed): Article[] {
     if (!data.items || !Array.isArray(data.items)) {
       return [];
     }
 
     return data.items
-      .filter((item: any) => item.title && item.link && item.pubDate)
-      .map((item: any) => {
+      .filter((item) => item.title && item.link && item.pubDate)
+      .map((item) => {
         try {
+          // 型ガードで安全性を確保
+          if (!item.title || !item.link || !item.pubDate) {
+            return null;
+          }
+
           return Article.create(
             feed.id.value,
             item.title,
@@ -68,6 +100,7 @@ export class Rss2JsonFeedFetchService implements IFeedFetchService {
             data.feed?.title || feed.name.value,
           );
         } catch {
+          // エンティティ作成に失敗した場合はnullを返す
           return null;
         }
       })
