@@ -8,10 +8,11 @@ import { FeedList } from './components/FeedList';
 import { ArticleFilter } from './components/ArticleFilter';
 import { ArticleList } from './components/ArticleList';
 import { NewsTimeline } from './components/NewsTimeline';
+import { TransitSearchView } from './components/TransitSearchView';
 import { ErrorMessage } from './components/ErrorMessage';
 import './App.css';
 
-type ViewMode = 'list' | 'timeline';
+type ViewMode = 'list' | 'timeline' | 'transit';
 
 /**
  * AppContent Component
@@ -57,11 +58,19 @@ const AppContent: React.FC = () => {
         >
           リスト表示
         </button>
+        <button
+          className={`tab-button ${viewMode === 'transit' ? 'active' : ''}`}
+          onClick={() => setViewMode('transit')}
+        >
+          🚉 乗換案内
+        </button>
       </div>
 
       <div className="content">
         {viewMode === 'timeline' ? (
           <NewsTimeline />
+        ) : viewMode === 'transit' ? (
+          <TransitSearchView />
         ) : (
           <>
             <ArticleFilter currentFilter={filter} onFilterChange={setFilter} />

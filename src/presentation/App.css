@@ -561,6 +561,266 @@ button:disabled {
   font-style: italic;
 }
 
+/* Transit Search */
+.transit-search-view {
+  width: 100%;
+}
+
+.transit-search {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  border: 2px solid #e9ecef;
+}
+
+.transit-search h2 {
+  color: #667eea;
+  font-size: 1.8em;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.transit-search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95em;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px 20px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 1em;
+  transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group input:disabled,
+.form-group select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f5f5f5;
+}
+
+.search-button {
+  padding: 15px 40px;
+  font-size: 1.1em;
+  margin-top: 10px;
+}
+
+/* Transit Results */
+.transit-results {
+  width: 100%;
+}
+
+.results-header {
+  color: #667eea;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  font-size: 1.2em;
+}
+
+.routes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Transit Route Card */
+.transit-route-card {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 15px;
+  padding: 25px;
+  transition: all 0.3s;
+}
+
+.transit-route-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.route-header {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.route-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.route-summary h3 {
+  color: #333;
+  font-size: 1.4em;
+  font-weight: 700;
+  flex: 1;
+}
+
+.region-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.route-stats {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stat-label {
+  font-size: 0.85em;
+  color: #777;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1.2em;
+  color: #667eea;
+  font-weight: 700;
+}
+
+/* Route Legs */
+.route-legs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.leg {
+  display: flex;
+  gap: 15px;
+  padding: 15px 0;
+  position: relative;
+}
+
+.leg:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 50px;
+  bottom: -15px;
+  width: 2px;
+  background: #ddd;
+}
+
+.leg-icon {
+  font-size: 2em;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid #e9ecef;
+}
+
+.leg-details {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.leg-stations {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.station {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1em;
+}
+
+.time {
+  font-weight: 600;
+  color: #667eea;
+  min-width: 50px;
+  font-size: 0.95em;
+}
+
+.station-name {
+  color: #333;
+  font-weight: 600;
+}
+
+.leg-line {
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-left: 60px;
+}
+
+.line-name {
+  color: #555;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.duration {
+  color: #999;
+  font-size: 0.85em;
+}
+
+.leg-fare {
+  color: #667eea;
+  font-weight: 700;
+  font-size: 1.1em;
+  white-space: nowrap;
+}
+
 /* Footer */
 .footer {
   background: #f8f9fa;
