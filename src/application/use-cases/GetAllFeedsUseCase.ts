@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import { Feed } from '@domain/entities/Feed';
-import { IFeedRepository } from '@domain/repositories/IFeedRepository';
+import type { IFeedRepository } from '@domain/repositories/IFeedRepository';
 
 /**
  * GetAllFeedsUseCase

@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
-import { IFeedRepository } from '@domain/repositories/IFeedRepository';
-import { IArticleRepository } from '@domain/repositories/IArticleRepository';
-import { IFeedFetchService } from '@domain/services/IFeedFetchService';
+import type { IFeedRepository } from '@domain/repositories/IFeedRepository';
+import type { IArticleRepository } from '@domain/repositories/IArticleRepository';
+import type { IFeedFetchService } from '@domain/services/IFeedFetchService';
 
 /**
  * RefreshAllFeedsUseCase

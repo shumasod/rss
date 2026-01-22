@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFeedManager } from './hooks/useFeedManager';
 import { UseCasesProvider } from './contexts/UseCasesContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
@@ -7,8 +7,11 @@ import { FeedManager } from './components/FeedManager';
 import { FeedList } from './components/FeedList';
 import { ArticleFilter } from './components/ArticleFilter';
 import { ArticleList } from './components/ArticleList';
+import { NewsTimeline } from './components/NewsTimeline';
 import { ErrorMessage } from './components/ErrorMessage';
 import './App.css';
+
+type ViewMode = 'list' | 'timeline';
 
 /**
  * AppContent Component
@@ -28,6 +31,8 @@ const AppContent: React.FC = () => {
     clearError,
   } = useFeedManager();
 
+  const [viewMode, setViewMode] = useState<ViewMode>('timeline');
+
   return (
     <div className="container">
       <Header onRefresh={refreshAllFeeds} loading={loading} />
@@ -38,9 +43,31 @@ const AppContent: React.FC = () => {
 
       <FeedList feeds={feeds} onRemoveFeed={removeFeed} loading={loading} />
 
+      {/* ビューモード切り替えタブ */}
+      <div className="view-mode-tabs">
+        <button
+          className={`tab-button ${viewMode === 'timeline' ? 'active' : ''}`}
+          onClick={() => setViewMode('timeline')}
+        >
+          タイムライン表示
+        </button>
+        <button
+          className={`tab-button ${viewMode === 'list' ? 'active' : ''}`}
+          onClick={() => setViewMode('list')}
+        >
+          リスト表示
+        </button>
+      </div>
+
       <div className="content">
-        <ArticleFilter currentFilter={filter} onFilterChange={setFilter} />
-        <ArticleList articles={articles} loading={loading} />
+        {viewMode === 'timeline' ? (
+          <NewsTimeline />
+        ) : (
+          <>
+            <ArticleFilter currentFilter={filter} onFilterChange={setFilter} />
+            <ArticleList articles={articles} loading={loading} />
+          </>
+        )}
       </div>
 
       <footer className="footer">

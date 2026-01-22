@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 import { FeedId } from '@domain/value-objects/FeedId';
-import { IFeedRepository } from '@domain/repositories/IFeedRepository';
-import { IArticleRepository } from '@domain/repositories/IArticleRepository';
+import type { IFeedRepository } from '@domain/repositories/IFeedRepository';
+import type { IArticleRepository } from '@domain/repositories/IArticleRepository';
 
 /**
  * RemoveFeedUseCase
