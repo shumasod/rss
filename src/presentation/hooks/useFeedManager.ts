@@ -18,7 +18,7 @@ export const useFeedManager = () => {
   const [error, setError] = useState<string | null>(null);
 
   // エラー自動クリア用のタイマー
-  const errorTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const errorTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Context から Use Cases を取得（安定した参照）
   const {

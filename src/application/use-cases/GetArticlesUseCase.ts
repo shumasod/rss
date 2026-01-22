@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import { Article } from '@domain/entities/Article';
-import { IArticleRepository } from '@domain/repositories/IArticleRepository';
+import type { IArticleRepository } from '@domain/repositories/IArticleRepository';
 
 /**
  * GetArticlesUseCase

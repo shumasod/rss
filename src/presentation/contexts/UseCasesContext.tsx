@@ -5,6 +5,7 @@ import { RemoveFeedUseCase } from '@application/use-cases/RemoveFeedUseCase';
 import { GetAllFeedsUseCase } from '@application/use-cases/GetAllFeedsUseCase';
 import { GetArticlesUseCase } from '@application/use-cases/GetArticlesUseCase';
 import { RefreshAllFeedsUseCase } from '@application/use-cases/RefreshAllFeedsUseCase';
+import { GetNewsTimelineUseCase } from '@application/use-cases/GetNewsTimelineUseCase';
 
 /**
  * UseCasesContext
@@ -17,6 +18,7 @@ interface UseCases {
   getAllFeedsUseCase: GetAllFeedsUseCase;
   getArticlesUseCase: GetArticlesUseCase;
   refreshAllFeedsUseCase: RefreshAllFeedsUseCase;
+  getNewsTimelineUseCase: GetNewsTimelineUseCase;
 }
 
 const UseCasesContext = createContext<UseCases | null>(null);
@@ -37,6 +39,7 @@ export const UseCasesProvider: React.FC<UseCasesProviderProps> = ({
     getAllFeedsUseCase: container.resolve(GetAllFeedsUseCase),
     getArticlesUseCase: container.resolve(GetArticlesUseCase),
     refreshAllFeedsUseCase: container.resolve(RefreshAllFeedsUseCase),
+    getNewsTimelineUseCase: container.resolve(GetNewsTimelineUseCase),
   };
 
   return (
