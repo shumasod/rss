@@ -13,6 +13,10 @@ import { Rss2JsonFeedFetchService } from '@infrastructure/services/Rss2JsonFeedF
 import { ITransitSearchService } from '@domain/services/ITransitSearchService';
 import { JapanTransitSearchService } from '@infrastructure/services/JapanTransitSearchService';
 import { InternationalTransitSearchService } from '@infrastructure/services/InternationalTransitSearchService';
+import { IMealRecipeService } from '@domain/services/IMealRecipeService';
+import { MealDbRecipeService } from '@infrastructure/services/MealDbRecipeService';
+import { IRecipeRepository } from '@domain/repositories/IRecipeRepository';
+import { LocalStorageRecipeRepository } from '@infrastructure/repositories/LocalStorageRecipeRepository';
 
 /**
  * DI Container Setup
@@ -29,6 +33,10 @@ export const setupContainer = () => {
     useClass: InMemoryArticleRepository,
   });
 
+  container.register<IRecipeRepository>('IRecipeRepository', {
+    useClass: LocalStorageRecipeRepository,
+  });
+
   // Service implementations
   container.register<IFeedFetchService>('IFeedFetchService', {
     useClass: Rss2JsonFeedFetchService,
@@ -40,6 +48,10 @@ export const setupContainer = () => {
 
   container.register<ITransitSearchService>('IInternationalTransitSearchService', {
     useClass: InternationalTransitSearchService,
+  });
+
+  container.register<IMealRecipeService>('IMealRecipeService', {
+    useClass: MealDbRecipeService,
   });
 
   return container;
