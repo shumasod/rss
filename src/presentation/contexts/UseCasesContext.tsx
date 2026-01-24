@@ -7,6 +7,13 @@ import { GetArticlesUseCase } from '@application/use-cases/GetArticlesUseCase';
 import { RefreshAllFeedsUseCase } from '@application/use-cases/RefreshAllFeedsUseCase';
 import { GetNewsTimelineUseCase } from '@application/use-cases/GetNewsTimelineUseCase';
 import { SearchTransitRouteUseCase } from '@application/use-cases/SearchTransitRouteUseCase';
+import { SearchMealRecipeUseCase } from '@application/use-cases/SearchMealRecipeUseCase';
+import { GetRecipeDetailUseCase } from '@application/use-cases/GetRecipeDetailUseCase';
+import { SaveFavoriteRecipeUseCase } from '@application/use-cases/SaveFavoriteRecipeUseCase';
+import { RemoveFavoriteRecipeUseCase } from '@application/use-cases/RemoveFavoriteRecipeUseCase';
+import { GetFavoriteRecipesUseCase } from '@application/use-cases/GetFavoriteRecipesUseCase';
+import { GetRecipeCategoriesUseCase } from '@application/use-cases/GetRecipeCategoriesUseCase';
+import { GetRandomRecipesUseCase } from '@application/use-cases/GetRandomRecipesUseCase';
 
 /**
  * UseCasesContext
@@ -21,6 +28,13 @@ interface UseCases {
   refreshAllFeedsUseCase: RefreshAllFeedsUseCase;
   getNewsTimelineUseCase: GetNewsTimelineUseCase;
   searchTransitRouteUseCase: SearchTransitRouteUseCase;
+  searchMealRecipeUseCase: SearchMealRecipeUseCase;
+  getRecipeDetailUseCase: GetRecipeDetailUseCase;
+  saveFavoriteRecipeUseCase: SaveFavoriteRecipeUseCase;
+  removeFavoriteRecipeUseCase: RemoveFavoriteRecipeUseCase;
+  getFavoriteRecipesUseCase: GetFavoriteRecipesUseCase;
+  getRecipeCategoriesUseCase: GetRecipeCategoriesUseCase;
+  getRandomRecipesUseCase: GetRandomRecipesUseCase;
 }
 
 const UseCasesContext = createContext<UseCases | null>(null);
@@ -43,6 +57,13 @@ export const UseCasesProvider: React.FC<UseCasesProviderProps> = ({
     refreshAllFeedsUseCase: container.resolve(RefreshAllFeedsUseCase),
     getNewsTimelineUseCase: container.resolve(GetNewsTimelineUseCase),
     searchTransitRouteUseCase: container.resolve(SearchTransitRouteUseCase),
+    searchMealRecipeUseCase: container.resolve(SearchMealRecipeUseCase),
+    getRecipeDetailUseCase: container.resolve(GetRecipeDetailUseCase),
+    saveFavoriteRecipeUseCase: container.resolve(SaveFavoriteRecipeUseCase),
+    removeFavoriteRecipeUseCase: container.resolve(RemoveFavoriteRecipeUseCase),
+    getFavoriteRecipesUseCase: container.resolve(GetFavoriteRecipesUseCase),
+    getRecipeCategoriesUseCase: container.resolve(GetRecipeCategoriesUseCase),
+    getRandomRecipesUseCase: container.resolve(GetRandomRecipesUseCase),
   };
 
   return (

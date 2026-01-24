@@ -9,10 +9,11 @@ import { ArticleFilter } from './components/ArticleFilter';
 import { ArticleList } from './components/ArticleList';
 import { NewsTimeline } from './components/NewsTimeline';
 import { TransitSearchView } from './components/TransitSearchView';
+import { MealRecipeSearchView } from './components/MealRecipeSearchView';
 import { ErrorMessage } from './components/ErrorMessage';
 import './App.css';
 
-type ViewMode = 'list' | 'timeline' | 'transit';
+type ViewMode = 'list' | 'timeline' | 'transit' | 'recipe';
 
 /**
  * AppContent Component
@@ -64,6 +65,12 @@ const AppContent: React.FC = () => {
         >
           🚉 乗換案内
         </button>
+        <button
+          className={`tab-button ${viewMode === 'recipe' ? 'active' : ''}`}
+          onClick={() => setViewMode('recipe')}
+        >
+          🍽️ レシピ検索
+        </button>
       </div>
 
       <div className="content">
@@ -71,6 +78,8 @@ const AppContent: React.FC = () => {
           <NewsTimeline />
         ) : viewMode === 'transit' ? (
           <TransitSearchView />
+        ) : viewMode === 'recipe' ? (
+          <MealRecipeSearchView />
         ) : (
           <>
             <ArticleFilter currentFilter={filter} onFilterChange={setFilter} />
