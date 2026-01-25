@@ -49,19 +49,37 @@ export const MealRecipeSearchView: React.FC = () => {
 
       try {
         if (activeTab === 'random') {
-          await handleRandomRecipes();
+          const result = await getRandomRecipesUseCase.execute(9);
+          if (result.success && result.recipes) {
+            setRecipes(result.recipes);
+          } else {
+            setError(result.error || 'ランダムレシピの取得に失敗しました');
+            setRecipes([]);
+          }
         } else if (activeTab === 'favorites') {
-          await handleLoadFavorites();
+          const result = await getFavoriteRecipesUseCase.execute();
+          if (result.success && result.recipes) {
+            setRecipes(result.recipes);
+            if (result.recipes.length === 0) {
+              setError('お気に入りレシピがありません');
+            }
+          } else {
+            setError(result.error || 'お気に入りの取得に失敗しました');
+            setRecipes([]);
+          }
         } else {
           setRecipes([]);
         }
+      } catch (err) {
+        setError('エラーが発生しました');
+        setRecipes([]);
       } finally {
         setLoading(false);
       }
     };
 
     loadContent();
-  }, [activeTab]);
+  }, [activeTab, getRandomRecipesUseCase, getFavoriteRecipesUseCase]);
 
   const handleSearch = useCallback(
     async (e: React.FormEvent) => {
@@ -95,51 +113,6 @@ export const MealRecipeSearchView: React.FC = () => {
     },
     [searchQuery, searchType, searchMealRecipeUseCase]
   );
-
-  const handleRandomRecipes = useCallback(async () => {
-    setError(null);
-    setLoading(true);
-
-    try {
-      const result = await getRandomRecipesUseCase.execute(9);
-
-      if (result.success && result.recipes) {
-        setRecipes(result.recipes);
-      } else {
-        setError(result.error || 'ランダムレシピの取得に失敗しました');
-        setRecipes([]);
-      }
-    } catch (err) {
-      setError('ランダムレシピの取得中にエラーが発生しました');
-      setRecipes([]);
-    } finally {
-      setLoading(false);
-    }
-  }, [getRandomRecipesUseCase]);
-
-  const handleLoadFavorites = useCallback(async () => {
-    setError(null);
-    setLoading(true);
-
-    try {
-      const result = await getFavoriteRecipesUseCase.execute();
-
-      if (result.success && result.recipes) {
-        setRecipes(result.recipes);
-        if (result.recipes.length === 0) {
-          setError('お気に入りレシピがありません');
-        }
-      } else {
-        setError(result.error || 'お気に入りの取得に失敗しました');
-        setRecipes([]);
-      }
-    } catch (err) {
-      setError('お気に入りの取得中にエラーが発生しました');
-      setRecipes([]);
-    } finally {
-      setLoading(false);
-    }
-  }, [getFavoriteRecipesUseCase]);
 
   const handleToggleFavorite = useCallback(
     async (recipe: Recipe) => {
