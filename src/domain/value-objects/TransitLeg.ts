@@ -11,7 +11,9 @@ export type TransitMode =
   | 'walking' // 徒歩
   | 'shinkansen' // 新幹線
   | 'express' // 特急
-  | 'local'; // 普通電車
+  | 'local' // 普通電車
+  | 'car' // 自動車
+  | 'bicycle'; // 自転車
 
 /**
  * TransitLeg Value Object
