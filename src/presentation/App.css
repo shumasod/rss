@@ -791,6 +791,41 @@ fieldset:disabled .radio-label {
   cursor: not-allowed;
 }
 
+/* Priority Selection */
+.priority-selection {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.05) 0%, rgba(255, 152, 0, 0.05) 100%);
+}
+
+.priority-options {
+  gap: 8px;
+}
+
+.priority-label {
+  flex: 1;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.priority-label:has(input[type="radio"]:checked) {
+  border-color: #ffc107;
+  background: rgba(255, 193, 7, 0.15);
+}
+
+.priority-label input[type="radio"]:checked + .radio-text {
+  color: #ff9800;
+}
+
+.priority-description {
+  margin-top: 12px;
+  padding: 10px 15px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  color: #666;
+  font-size: 0.9em;
+  text-align: center;
+}
+
 /* Transit Results */
 .transit-results {
   width: 100%;

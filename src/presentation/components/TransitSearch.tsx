@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SearchTransitRouteUseCase } from '@application/use-cases/SearchTransitRouteUseCase';
 import { TransitRoute } from '@domain/entities/TransitRoute';
-import type { TransportMode, OriginType } from '@domain/services/ITransitSearchService';
+import type { TransportMode, OriginType, RoutePriority } from '@domain/services/ITransitSearchService';
 
 interface TransitSearchProps {
   searchTransitUseCase: SearchTransitRouteUseCase;
@@ -29,6 +29,14 @@ const TIME_TYPES: { value: TimeType; label: string; icon: string }[] = [
   { value: 'now', label: '現在時刻', icon: '⏰' },
   { value: 'departure', label: '出発時刻指定', icon: '🚀' },
   { value: 'arrival', label: '到着時刻指定', icon: '🎯' },
+];
+
+const ROUTE_PRIORITIES: { value: RoutePriority; label: string; icon: string; description: string }[] = [
+  { value: 'time', label: '到着が早い', icon: '⚡', description: '最短時間で到着' },
+  { value: 'transfer', label: '乗換が少ない', icon: '🔄', description: '乗換回数を最小化' },
+  { value: 'fare', label: '料金が安い', icon: '💰', description: '運賃を最小化' },
+  { value: 'walk', label: '歩きが少ない', icon: '🚶', description: '徒歩距離を最小化' },
+  { value: 'comfort', label: '快適', icon: '💺', description: '座れる確率が高い' },
 ];
 
 // 現在の日時をフォーマット
@@ -64,6 +72,7 @@ export const TransitSearch: React.FC<TransitSearchProps> = ({
   const [region, setRegion] = useState<'domestic' | 'international'>('domestic');
   const [transportMode, setTransportMode] = useState<TransportMode>('all');
   const [originType, setOriginType] = useState<OriginType>('station');
+  const [priority, setPriority] = useState<RoutePriority>('time');
   const [timeType, setTimeType] = useState<TimeType>('now');
   const [selectedDateTime, setSelectedDateTime] = useState<string>(
     formatDateTimeLocal(new Date())
@@ -113,6 +122,7 @@ export const TransitSearch: React.FC<TransitSearchProps> = ({
         {
           transportMode,
           originType,
+          priority,
           ...timeOptions,
         },
       );
@@ -274,6 +284,29 @@ export const TransitSearch: React.FC<TransitSearchProps> = ({
               </div>
             </div>
           )}
+        </fieldset>
+
+        <fieldset className="form-group radio-group priority-selection" disabled={loading}>
+          <legend>⭐ 優先条件</legend>
+          <div className="radio-options priority-options">
+            {ROUTE_PRIORITIES.map((p) => (
+              <label key={p.value} className="radio-label priority-label" title={p.description}>
+                <input
+                  type="radio"
+                  name="priority"
+                  value={p.value}
+                  checked={priority === p.value}
+                  onChange={(e) => setPriority(e.target.value as RoutePriority)}
+                />
+                <span className="radio-text">
+                  {p.icon} {p.label}
+                </span>
+              </label>
+            ))}
+          </div>
+          <div className="priority-description">
+            {ROUTE_PRIORITIES.find((p) => p.value === priority)?.description}
+          </div>
         </fieldset>
 
         <div className="form-group">
