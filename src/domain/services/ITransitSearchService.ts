@@ -1,6 +1,22 @@
 import { TransitRoute } from '../entities/TransitRoute';
 
 /**
+ * TransportMode - 交通手段の種類
+ */
+export type TransportMode =
+  | 'all' // すべて
+  | 'train' // 電車・私鉄
+  | 'shinkansen' // 新幹線
+  | 'bus' // 高速バス
+  | 'ship' // 船・フェリー
+  | 'airplane'; // 飛行機
+
+/**
+ * OriginType - 出発地の種類
+ */
+export type OriginType = 'station' | 'shop' | 'address';
+
+/**
  * TransitSearchOptions
  * 乗換案内検索のオプション
  */
@@ -10,6 +26,8 @@ export interface TransitSearchOptions {
   maxTransfers?: number; // 最大乗換回数
   preferredModes?: string[]; // 優先する交通手段
   language?: string; // 言語設定
+  transportMode?: TransportMode; // 交通手段の種類
+  originType?: OriginType; // 出発地の種類
 }
 
 /**
