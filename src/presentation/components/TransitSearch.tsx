@@ -8,6 +8,8 @@ interface TransitSearchProps {
   onSearchComplete: (routes: TransitRoute[]) => void;
 }
 
+type TimeType = 'departure' | 'arrival' | 'now';
+
 const TRANSPORT_MODES: { value: TransportMode; label: string; icon: string }[] = [
   { value: 'all', label: 'すべて', icon: '🚊' },
   { value: 'train', label: '電車・私鉄', icon: '🚃' },
@@ -23,6 +25,32 @@ const ORIGIN_TYPES: { value: OriginType; label: string; icon: string }[] = [
   { value: 'address', label: '住所', icon: '📍' },
 ];
 
+const TIME_TYPES: { value: TimeType; label: string; icon: string }[] = [
+  { value: 'now', label: '現在時刻', icon: '⏰' },
+  { value: 'departure', label: '出発時刻指定', icon: '🚀' },
+  { value: 'arrival', label: '到着時刻指定', icon: '🎯' },
+];
+
+// 現在の日時をフォーマット
+const formatDateTimeLocal = (date: Date): string => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+};
+
+// 時刻を見やすくフォーマット
+const formatDisplayTime = (date: Date): string => {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'][date.getDay()];
+  return `${month}/${day}(${dayOfWeek}) ${hours}:${minutes}`;
+};
+
 /**
  * TransitSearch Component
  * 公共交通機関の乗換案内検索フォーム
@@ -36,6 +64,10 @@ export const TransitSearch: React.FC<TransitSearchProps> = ({
   const [region, setRegion] = useState<'domestic' | 'international'>('domestic');
   const [transportMode, setTransportMode] = useState<TransportMode>('all');
   const [originType, setOriginType] = useState<OriginType>('station');
+  const [timeType, setTimeType] = useState<TimeType>('now');
+  const [selectedDateTime, setSelectedDateTime] = useState<string>(
+    formatDateTimeLocal(new Date())
+  );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -50,6 +82,17 @@ export const TransitSearch: React.FC<TransitSearchProps> = ({
     }
   };
 
+  const getSearchTime = (): { departureTime?: Date; arrivalTime?: Date } => {
+    if (timeType === 'now') {
+      return { departureTime: new Date() };
+    }
+    const selectedDate = new Date(selectedDateTime);
+    if (timeType === 'departure') {
+      return { departureTime: selectedDate };
+    }
+    return { arrivalTime: selectedDate };
+  };
+
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -62,6 +105,7 @@ export const TransitSearch: React.FC<TransitSearchProps> = ({
     setError(null);
 
     try {
+      const timeOptions = getSearchTime();
       const routes = await searchTransitUseCase.searchRoutes(
         origin.trim(),
         destination.trim(),
@@ -69,6 +113,7 @@ export const TransitSearch: React.FC<TransitSearchProps> = ({
         {
           transportMode,
           originType,
+          ...timeOptions,
         },
       );
       onSearchComplete(routes);
@@ -81,6 +126,13 @@ export const TransitSearch: React.FC<TransitSearchProps> = ({
     } finally {
       setLoading(false);
     }
+  };
+
+  // クイック時刻設定ボタン
+  const setQuickTime = (minutes: number) => {
+    const date = new Date();
+    date.setMinutes(date.getMinutes() + minutes);
+    setSelectedDateTime(formatDateTimeLocal(date));
   };
 
   return (
@@ -138,6 +190,90 @@ export const TransitSearch: React.FC<TransitSearchProps> = ({
               </label>
             ))}
           </div>
+        </fieldset>
+
+        <fieldset className="form-group radio-group time-selection" disabled={loading}>
+          <legend>🕐 時刻指定</legend>
+          <div className="radio-options time-types">
+            {TIME_TYPES.map((type) => (
+              <label key={type.value} className="radio-label">
+                <input
+                  type="radio"
+                  name="timeType"
+                  value={type.value}
+                  checked={timeType === type.value}
+                  onChange={(e) => setTimeType(e.target.value as TimeType)}
+                />
+                <span className="radio-text">
+                  {type.icon} {type.label}
+                </span>
+              </label>
+            ))}
+          </div>
+
+          {timeType !== 'now' && (
+            <div className="time-picker-container">
+              <div className="time-picker-row">
+                <input
+                  type="datetime-local"
+                  value={selectedDateTime}
+                  onChange={(e) => setSelectedDateTime(e.target.value)}
+                  className="datetime-input"
+                  disabled={loading}
+                />
+                <span className="selected-time-display">
+                  {formatDisplayTime(new Date(selectedDateTime))}
+                </span>
+              </div>
+              <div className="quick-time-buttons">
+                <button
+                  type="button"
+                  className="quick-time-btn"
+                  onClick={() => setQuickTime(0)}
+                  disabled={loading}
+                >
+                  今すぐ
+                </button>
+                <button
+                  type="button"
+                  className="quick-time-btn"
+                  onClick={() => setQuickTime(30)}
+                  disabled={loading}
+                >
+                  30分後
+                </button>
+                <button
+                  type="button"
+                  className="quick-time-btn"
+                  onClick={() => setQuickTime(60)}
+                  disabled={loading}
+                >
+                  1時間後
+                </button>
+                <button
+                  type="button"
+                  className="quick-time-btn"
+                  onClick={() => setQuickTime(120)}
+                  disabled={loading}
+                >
+                  2時間後
+                </button>
+                <button
+                  type="button"
+                  className="quick-time-btn"
+                  onClick={() => {
+                    const tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    tomorrow.setHours(8, 0, 0, 0);
+                    setSelectedDateTime(formatDateTimeLocal(tomorrow));
+                  }}
+                  disabled={loading}
+                >
+                  明日8:00
+                </button>
+              </div>
+            </div>
+          )}
         </fieldset>
 
         <div className="form-group">
