@@ -31,3 +31,6 @@ dist-ssr
 
 # Build
 build/
+
+# Test coverage
+coverage/
