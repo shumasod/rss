@@ -1515,3 +1515,897 @@ fieldset:disabled .radio-label {
     justify-content: flex-start;
   }
 }
+
+/* Banner Ad Styles */
+.banner-ad {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px dashed #dee2e6;
+  border-radius: 10px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.banner-large {
+  padding: 25px 30px;
+}
+
+.banner-small {
+  padding: 10px 15px;
+}
+
+.banner-header {
+  margin-bottom: 10px;
+}
+
+.banner-footer {
+  margin-top: 10px;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+}
+
+.banner-title {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #333;
+}
+
+.banner-subtitle {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.banner-cta {
+  padding: 10px 25px;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.banner-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.banner-sponsor {
+  font-size: 0.75em;
+  color: #999;
+}
+
+/* Feed Category Tabs */
+.feed-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.category-tab {
+  padding: 8px 16px;
+  background: white;
+  color: #667eea;
+  border: 2px solid #e9ecef;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.category-tab:hover:not(:disabled) {
+  border-color: #667eea;
+}
+
+.category-tab.active {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+/* Stock Chart Styles */
+.stock-chart-container {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  border: 2px solid #e9ecef;
+}
+
+.stock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.stock-header h2 {
+  color: #667eea;
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.stock-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.last-update {
+  font-size: 0.85em;
+  color: #777;
+}
+
+.refresh-stock-btn {
+  padding: 8px 20px;
+  font-size: 0.9em;
+}
+
+.stock-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stock-tab {
+  padding: 10px 20px;
+  background: white;
+  color: #667eea;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.stock-tab:hover {
+  border-color: #667eea;
+}
+
+.stock-tab.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+}
+
+.stock-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.stock-row {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 15px;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.stock-row:hover {
+  background: #e9ecef;
+}
+
+.stock-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stock-symbol {
+  font-weight: 700;
+  color: #667eea;
+}
+
+.stock-name {
+  font-size: 0.9em;
+  color: #333;
+}
+
+.stock-price {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: right;
+}
+
+.price-value {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #333;
+}
+
+.price-change {
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.price-change.positive {
+  color: #28a745;
+}
+
+.price-change.negative {
+  color: #dc3545;
+}
+
+.stock-details {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.detail-item {
+  font-size: 0.85em;
+  color: #666;
+}
+
+.low-price-notice {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.low-price-notice p {
+  color: #856404;
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.stock-cta {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.lp-navigate-btn {
+  padding: 15px 40px;
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  color: #333;
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
+.lp-navigate-btn:hover {
+  box-shadow: 0 5px 20px rgba(255, 193, 7, 0.5);
+}
+
+.stock-disclaimer {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.stock-disclaimer p {
+  font-size: 0.8em;
+  color: #666;
+  margin: 5px 0;
+}
+
+/* Airline Info Styles */
+.airline-info-container {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  border: 2px solid #e9ecef;
+}
+
+.airline-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.airline-header h2 {
+  color: #667eea;
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.airline-subtitle {
+  color: #666;
+}
+
+.airline-alliances {
+  margin-bottom: 25px;
+}
+
+.airline-alliances h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.alliance-cards {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.alliance-card {
+  flex: 1;
+  min-width: 200px;
+  padding: 15px;
+  background: #f8f9fa;
+  border: 3px solid #e9ecef;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.alliance-card:hover,
+.alliance-card.selected {
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.alliance-name {
+  font-size: 1.1em;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.alliance-members {
+  font-size: 0.85em;
+  color: #666;
+}
+
+.airline-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid #e9ecef;
+  border-radius: 25px;
+  font-size: 1em;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.region-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.region-tab {
+  padding: 8px 16px;
+  background: white;
+  color: #667eea;
+  border: 2px solid #e9ecef;
+  border-radius: 20px;
+  font-size: 0.85em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.region-tab:hover {
+  border-color: #667eea;
+}
+
+.region-tab.active {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.airline-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.airline-card {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 15px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.airline-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.airline-main {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.airline-code {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+.airline-names {
+  display: flex;
+  flex-direction: column;
+}
+
+.airline-name-en {
+  font-weight: 600;
+  color: #333;
+}
+
+.airline-name-jp {
+  font-size: 0.85em;
+  color: #666;
+}
+
+.airline-details {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.airline-country,
+.airline-alliance {
+  font-size: 0.85em;
+  color: #555;
+}
+
+.airline-hubs {
+  margin-bottom: 15px;
+}
+
+.hubs-label {
+  font-size: 0.8em;
+  color: #777;
+}
+
+.hubs-list {
+  font-size: 0.85em;
+  color: #333;
+}
+
+.airline-website {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.airline-website:hover {
+  text-decoration: underline;
+}
+
+.airline-stats {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}
+
+/* Low Price Stock LP Styles */
+.lp-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.lp-hero {
+  padding: 60px 30px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: white;
+  color: #667eea;
+}
+
+.lp-hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.hero-subtitle {
+  font-size: 1.3em;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stat-value {
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.lp-filters {
+  padding: 30px;
+  background: #0f0f23;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.filter-group label {
+  color: white;
+  font-weight: 600;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-buttons button {
+  padding: 10px 20px;
+  background: transparent;
+  color: white;
+  border: 2px solid #444;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.filter-buttons button:hover,
+.filter-buttons button.active {
+  border-color: #ffc107;
+  background: rgba(255, 193, 7, 0.1);
+}
+
+.filter-group select {
+  padding: 10px 20px;
+  background: #1a1a2e;
+  color: white;
+  border: 2px solid #444;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.lp-stocks {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.lp-stock-card {
+  background: linear-gradient(135deg, #1e1e3f 0%, #252550 100%);
+  border: 2px solid #333;
+  border-radius: 20px;
+  padding: 25px;
+  color: white;
+  transition: all 0.3s;
+}
+
+.lp-stock-card:hover {
+  border-color: #ffc107;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.stock-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.stock-code-name {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.lp-stock-card .stock-code {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.lp-stock-card .stock-name {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.risk-badge {
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.risk-low {
+  background: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+}
+
+.risk-medium {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+}
+
+.risk-high {
+  background: rgba(220, 53, 69, 0.2);
+  color: #dc3545;
+}
+
+.stock-prices {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.current-price,
+.target-price {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.price-label {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.lp-stock-card .price-value {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: white;
+}
+
+.price-value.target {
+  color: #28a745;
+}
+
+.arrow {
+  font-size: 1.5em;
+}
+
+.potential-badge {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+}
+
+.stock-sector {
+  margin-bottom: 15px;
+  font-size: 0.9em;
+}
+
+.sector-label {
+  color: #888;
+}
+
+.sector-value {
+  color: white;
+  margin-left: 5px;
+}
+
+.stock-reason {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.reason-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #ffc107;
+}
+
+.stock-reason p {
+  font-size: 0.9em;
+  line-height: 1.6;
+  color: #ccc;
+  margin: 0;
+}
+
+.detail-btn {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 2px solid #ffc107;
+  color: #ffc107;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.detail-btn:hover {
+  background: #ffc107;
+  color: #1a1a2e;
+}
+
+.lp-cta {
+  padding: 60px 30px;
+  text-align: center;
+  background: #0f0f23;
+  color: white;
+}
+
+.lp-cta h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+
+.lp-cta p {
+  margin-bottom: 30px;
+  color: #888;
+}
+
+.broker-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.broker-btn {
+  padding: 15px 40px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.broker-btn.sbi {
+  background: linear-gradient(135deg, #0066cc 0%, #004999 100%);
+  color: white;
+}
+
+.broker-btn.rakuten {
+  background: linear-gradient(135deg, #bf0000 0%, #8b0000 100%);
+  color: white;
+}
+
+.broker-btn.matsui {
+  background: linear-gradient(135deg, #006837 0%, #004d25 100%);
+  color: white;
+}
+
+.broker-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.lp-disclaimer {
+  padding: 40px 30px;
+  background: #1a1a2e;
+  color: #888;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.lp-disclaimer h3 {
+  color: #ffc107;
+  margin-bottom: 20px;
+}
+
+.lp-disclaimer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.lp-disclaimer li {
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .stock-row {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .stock-price {
+    text-align: center;
+  }
+
+  .stock-details {
+    justify-content: center;
+  }
+
+  .airline-list {
+    grid-template-columns: 1fr;
+  }
+
+  .lp-hero h1 {
+    font-size: 1.8em;
+  }
+
+  .lp-stocks {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .broker-buttons {
+    flex-direction: column;
+  }
+}

@@ -11,9 +11,13 @@ import { NewsTimeline } from './components/NewsTimeline';
 import { TransitSearchView } from './components/TransitSearchView';
 import { MealRecipeSearchView } from './components/MealRecipeSearchView';
 import { ErrorMessage } from './components/ErrorMessage';
+import { BannerAd } from './components/BannerAd';
+import { StockChart } from './components/StockChart';
+import { AirlineInfo } from './components/AirlineInfo';
+import { LowPriceStockLP } from './components/LowPriceStockLP';
 import './App.css';
 
-type ViewMode = 'list' | 'timeline' | 'transit' | 'recipe';
+type ViewMode = 'list' | 'timeline' | 'transit' | 'recipe' | 'stock' | 'airline' | 'lowprice-lp';
 
 /**
  * AppContent Component
@@ -35,9 +39,17 @@ const AppContent: React.FC = () => {
 
   const [viewMode, setViewMode] = useState<ViewMode>('timeline');
 
+  // 低位株LPページの場合は特別なレイアウト
+  if (viewMode === 'lowprice-lp') {
+    return <LowPriceStockLP onBack={() => setViewMode('stock')} />;
+  }
+
   return (
     <div className="container">
       <Header onRefresh={refreshAllFeeds} loading={loading} />
+
+      {/* ヘッダーバナー広告 */}
+      <BannerAd position="header" size="large" />
 
       <ErrorMessage message={error} onDismiss={clearError} />
 
@@ -51,13 +63,13 @@ const AppContent: React.FC = () => {
           className={`tab-button ${viewMode === 'timeline' ? 'active' : ''}`}
           onClick={() => setViewMode('timeline')}
         >
-          タイムライン表示
+          📰 タイムライン
         </button>
         <button
           className={`tab-button ${viewMode === 'list' ? 'active' : ''}`}
           onClick={() => setViewMode('list')}
         >
-          リスト表示
+          📋 リスト
         </button>
         <button
           className={`tab-button ${viewMode === 'transit' ? 'active' : ''}`}
@@ -66,10 +78,22 @@ const AppContent: React.FC = () => {
           🚉 乗換案内
         </button>
         <button
+          className={`tab-button ${viewMode === 'airline' ? 'active' : ''}`}
+          onClick={() => setViewMode('airline')}
+        >
+          ✈️ 航空会社
+        </button>
+        <button
+          className={`tab-button ${viewMode === 'stock' ? 'active' : ''}`}
+          onClick={() => setViewMode('stock')}
+        >
+          📈 株式
+        </button>
+        <button
           className={`tab-button ${viewMode === 'recipe' ? 'active' : ''}`}
           onClick={() => setViewMode('recipe')}
         >
-          🍽️ レシピ検索
+          🍽️ レシピ
         </button>
       </div>
 
@@ -80,6 +104,10 @@ const AppContent: React.FC = () => {
           <TransitSearchView />
         ) : viewMode === 'recipe' ? (
           <MealRecipeSearchView />
+        ) : viewMode === 'stock' ? (
+          <StockChart onNavigateToLP={() => setViewMode('lowprice-lp')} />
+        ) : viewMode === 'airline' ? (
+          <AirlineInfo />
         ) : (
           <>
             <ArticleFilter currentFilter={filter} onFilterChange={setFilter} />
@@ -87,6 +115,9 @@ const AppContent: React.FC = () => {
           </>
         )}
       </div>
+
+      {/* フッターバナー広告 */}
+      <BannerAd position="footer" size="medium" />
 
       <footer className="footer">
         <p>© 2026 RSS Feed Reader - Built with DDD & Microservices Architecture</p>

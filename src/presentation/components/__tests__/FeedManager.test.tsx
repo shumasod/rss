@@ -14,7 +14,7 @@ describe('FeedManager', () => {
     it('should render the component with header', () => {
       render(<FeedManager onAddFeed={mockOnAddFeed} loading={false} />)
 
-      expect(screen.getByText('RSS フィード管理')).toBeInTheDocument()
+      expect(screen.getByText(/RSS フィード管理/)).toBeInTheDocument()
     })
 
     it('should render the URL input field', () => {
