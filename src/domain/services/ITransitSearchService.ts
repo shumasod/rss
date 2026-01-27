@@ -17,6 +17,16 @@ export type TransportMode =
 export type OriginType = 'station' | 'shop' | 'address';
 
 /**
+ * RoutePriority - ルート検索の優先条件
+ */
+export type RoutePriority =
+  | 'time' // 最短時間優先
+  | 'transfer' // 乗換回数少ない優先
+  | 'fare' // 料金安い優先
+  | 'walk' // 歩く距離少ない優先
+  | 'comfort'; // 快適さ優先（座れる確率が高い）
+
+/**
  * TransitSearchOptions
  * 乗換案内検索のオプション
  */
@@ -28,6 +38,7 @@ export interface TransitSearchOptions {
   language?: string; // 言語設定
   transportMode?: TransportMode; // 交通手段の種類
   originType?: OriginType; // 出発地の種類
+  priority?: RoutePriority; // 優先条件
 }
 
 /**
