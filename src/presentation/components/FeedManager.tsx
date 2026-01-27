@@ -34,6 +34,15 @@ const PRESET_FEEDS = [
   { name: 'ねとらぼ', url: 'https://nlab.itmedia.co.jp/nl/rss/2.0/nlab_all.xml', category: 'entertainment' },
   { name: 'Togetter', url: 'https://togetter.com/rss/hot', category: 'entertainment' },
   { name: 'Game Watch', url: 'https://game.watch.impress.co.jp/data/rss/1.0/gmw/feed.rdf', category: 'entertainment' },
+  // 動画 - YouTube
+  { name: 'Google Japan', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCkKI44iEFW0FE5F8LNVYtFA', category: 'video' },
+  { name: 'TEDx Talks', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCsT0YIqwnpJCM-mx7-gSA4Q', category: 'video' },
+  { name: 'Vox', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCLXo7UDZvByw2ixzpQCufnA', category: 'video' },
+  { name: 'Kurzgesagt', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCsXVk37bltHxD1rDPwtNM8Q', category: 'video' },
+  { name: 'Veritasium', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCHnyfMqiRRG1u-2MsSQLbXA', category: 'video' },
+  { name: 'Linus Tech Tips', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw', category: 'video' },
+  { name: 'MKBHD', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCBJycsmduvYEL83R_U4JriQ', category: 'video' },
+  { name: 'Numberphile', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCoxcjq-8xIDTYp3uz647V5A', category: 'video' },
 ];
 
 const FEED_CATEGORIES = [
@@ -43,6 +52,7 @@ const FEED_CATEGORIES = [
   { id: 'tech', name: 'テクノロジー', icon: '💻' },
   { id: 'finance', name: '経済・株式', icon: '📈' },
   { id: 'entertainment', name: 'エンタメ', icon: '🎮' },
+  { id: 'video', name: '動画', icon: '🎬' },
 ];
 
 export const FeedManager: React.FC<FeedManagerProps> = ({ onAddFeed, loading }) => {

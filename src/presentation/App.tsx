@@ -15,9 +15,10 @@ import { BannerAd } from './components/BannerAd';
 import { StockChart } from './components/StockChart';
 import { AirlineInfo } from './components/AirlineInfo';
 import { LowPriceStockLP } from './components/LowPriceStockLP';
+import { VideoPlayer } from './components/VideoPlayer';
 import './App.css';
 
-type ViewMode = 'list' | 'timeline' | 'transit' | 'recipe' | 'stock' | 'airline' | 'lowprice-lp';
+type ViewMode = 'list' | 'timeline' | 'transit' | 'recipe' | 'stock' | 'airline' | 'lowprice-lp' | 'video';
 
 /**
  * AppContent Component
@@ -95,6 +96,12 @@ const AppContent: React.FC = () => {
         >
           🍽️ レシピ
         </button>
+        <button
+          className={`tab-button ${viewMode === 'video' ? 'active' : ''}`}
+          onClick={() => setViewMode('video')}
+        >
+          🎬 動画
+        </button>
       </div>
 
       <div className="content">
@@ -108,6 +115,8 @@ const AppContent: React.FC = () => {
           <StockChart onNavigateToLP={() => setViewMode('lowprice-lp')} />
         ) : viewMode === 'airline' ? (
           <AirlineInfo />
+        ) : viewMode === 'video' ? (
+          <VideoPlayer />
         ) : (
           <>
             <ArticleFilter currentFilter={filter} onFilterChange={setFilter} />
