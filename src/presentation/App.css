@@ -3259,3 +3259,257 @@ fieldset:disabled .radio-label {
     font-size: 0.9em;
   }
 }
+
+/* ==========================================
+   Weapon Selector & Ultimate Mode Styles
+   ========================================== */
+
+.weapon-selector {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #333;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.weapon-current {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #1a1a3e, #2a2a5e);
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: 2px solid #0ff;
+}
+
+.weapon-icon {
+  font-size: 1.5em;
+}
+
+.weapon-name {
+  color: #0ff;
+  font-size: 0.9em;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+}
+
+.weapon-list {
+  display: flex;
+  gap: 8px;
+}
+
+.weapon-btn {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  border: 2px solid #444;
+  background: #1a1a2e;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3em;
+}
+
+.weapon-btn:hover:not(.locked) {
+  border-color: #0ff;
+  transform: scale(1.1);
+}
+
+.weapon-btn.active {
+  border-color: #0ff;
+  background: linear-gradient(135deg, #0a3a4a, #0a5a6a);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.weapon-btn.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.weapon-btn.locked::after {
+  content: '🔒';
+  position: absolute;
+  font-size: 0.6em;
+  bottom: 2px;
+  right: 2px;
+}
+
+.weapon-key {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-size: 0.6em;
+  color: #888;
+  font-family: 'Courier New', monospace;
+}
+
+.ultimate-gauge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gauge-label {
+  color: #f0f;
+  font-size: 0.7em;
+  font-family: 'Courier New', monospace;
+}
+
+.gauge-bar {
+  width: 80px;
+  height: 12px;
+  background: #222;
+  border-radius: 6px;
+  border: 1px solid #444;
+  overflow: hidden;
+}
+
+.gauge-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f0f, #ff0, #0ff);
+  transition: width 0.3s;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+}
+
+.ultimate-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 2px solid #444;
+  background: #1a1a2e;
+  color: #666;
+  cursor: not-allowed;
+  font-size: 0.9em;
+  transition: all 0.3s;
+}
+
+.ultimate-btn.ready {
+  border-color: #ff0;
+  background: linear-gradient(135deg, #3a3a0a, #5a5a0a);
+  color: #ff0;
+  cursor: pointer;
+  animation: ultimateReady 0.5s ease-in-out infinite;
+}
+
+.ultimate-btn.ready:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
+}
+
+@keyframes ultimateReady {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); }
+  50% { box-shadow: 0 0 25px rgba(255, 255, 0, 0.9); }
+}
+
+/* Ultimate Mode Active Effects */
+.game-area.ultimate-active {
+  border-color: #ff0;
+  box-shadow: 0 0 50px rgba(255, 255, 0, 0.5), inset 0 0 50px rgba(255, 255, 0, 0.1);
+  animation: ultimateGlow 0.3s ease-in-out infinite;
+}
+
+@keyframes ultimateGlow {
+  0%, 100% {
+    border-color: #ff0;
+    box-shadow: 0 0 50px rgba(255, 255, 0, 0.5), inset 0 0 50px rgba(255, 255, 0, 0.1);
+  }
+  50% {
+    border-color: #fff;
+    box-shadow: 0 0 70px rgba(255, 255, 255, 0.7), inset 0 0 70px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.player.ultimate {
+  filter: drop-shadow(0 0 20px #ff0) drop-shadow(0 0 40px #fff);
+  animation: playerUltimate 0.2s ease-in-out infinite;
+}
+
+@keyframes playerUltimate {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Bullet Weapon Styles */
+.bullet-ballot {
+  animation: ballotSpin 0.3s linear infinite;
+}
+
+@keyframes ballotSpin {
+  0% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+  100% { transform: rotate(-5deg); }
+}
+
+.bullet-homing {
+  animation: homingPulse 0.2s ease-in-out infinite;
+}
+
+@keyframes homingPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Mobile Weapon Controls */
+.weapon-switch-btn {
+  background: rgba(0, 255, 255, 0.2) !important;
+  border-color: #0ff !important;
+}
+
+.ultimate-mobile-btn {
+  background: rgba(100, 100, 100, 0.2) !important;
+  border-color: #666 !important;
+  opacity: 0.5;
+}
+
+.ultimate-mobile-btn.ready {
+  background: rgba(255, 255, 0, 0.3) !important;
+  border-color: #ff0 !important;
+  opacity: 1;
+  animation: ultimateReady 0.5s ease-in-out infinite;
+}
+
+/* Weapon Selector Responsive */
+@media (max-width: 768px) {
+  .weapon-selector {
+    padding: 8px 10px;
+    gap: 10px;
+  }
+
+  .weapon-current {
+    padding: 5px 10px;
+  }
+
+  .weapon-icon {
+    font-size: 1.2em;
+  }
+
+  .weapon-name {
+    font-size: 0.8em;
+  }
+
+  .weapon-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1em;
+  }
+
+  .gauge-bar {
+    width: 60px;
+  }
+
+  .ultimate-btn {
+    padding: 6px 10px;
+    font-size: 0.8em;
+  }
+
+  .game-controls-mobile {
+    gap: 10px;
+  }
+}
