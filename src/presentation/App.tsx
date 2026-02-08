@@ -16,9 +16,10 @@ import { StockChart } from './components/StockChart';
 import { AirlineInfo } from './components/AirlineInfo';
 import { LowPriceStockLP } from './components/LowPriceStockLP';
 import { VideoPlayer } from './components/VideoPlayer';
+import { ShootingGame } from './components/ShootingGame';
 import './App.css';
 
-type ViewMode = 'list' | 'timeline' | 'transit' | 'recipe' | 'stock' | 'airline' | 'lowprice-lp' | 'video';
+type ViewMode = 'list' | 'timeline' | 'transit' | 'recipe' | 'stock' | 'airline' | 'lowprice-lp' | 'video' | 'game';
 
 /**
  * AppContent Component
@@ -102,6 +103,12 @@ const AppContent: React.FC = () => {
         >
           🎬 動画
         </button>
+        <button
+          className={`tab-button ${viewMode === 'game' ? 'active' : ''}`}
+          onClick={() => setViewMode('game')}
+        >
+          🎮 ゲーム
+        </button>
       </div>
 
       <div className="content">
@@ -117,6 +124,8 @@ const AppContent: React.FC = () => {
           <AirlineInfo />
         ) : viewMode === 'video' ? (
           <VideoPlayer />
+        ) : viewMode === 'game' ? (
+          <ShootingGame />
         ) : (
           <>
             <ArticleFilter currentFilter={filter} onFilterChange={setFilter} />
